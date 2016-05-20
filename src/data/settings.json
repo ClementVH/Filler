@@ -1,0 +1,23 @@
+{
+	"gridSize" : 29,
+
+	"nbHumanPlayer" : 1,
+	"nbAIPlayer" : 1,
+	
+	"AI" : "moderate",
+
+	"mapType" : "SQUARE",
+
+	"color1" : "#8B1A1A",
+	"color2" : "#FF7F00",
+	"color3" : "#EEC900",
+	"color4" : "#008B00",
+	"color5" : "#104E8B",
+	"color6" : "#7A378B",
+
+	"name1" : "Player 1",
+	"name2" : "Player 2",
+	"name3" : "Player 3",
+	"name4" : "Player 4",
+
+}
