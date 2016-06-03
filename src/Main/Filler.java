@@ -11,8 +11,11 @@ import Player.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.data.JSONObject;
+import processing.net.Server;
 
 public class Filler {
+	
+	public static Server server;
 	
 	public static PApplet p;
 	

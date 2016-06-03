@@ -3,7 +3,7 @@
 
 	"nbHumanPlayer" : 1,
 	"nbAIPlayer" : 1,
-	
+
 	"AI" : "moderate",
 
 	"mapType" : "SQUARE",

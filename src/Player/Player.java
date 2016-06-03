@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Main.Filler;
 import Main.Game;
 import Map.MapType;
+import processing.net.Client;
 
 public abstract class Player {
 	
@@ -28,6 +29,8 @@ public abstract class Player {
 		color = Game.map.get(position[0]).get(position[1]).color;
 		
 		Game.map.get(position[0]).get(position[1]).domination = nb;
+		
+		Client c = new Client(Filler.p, "127.0.0.1", 12345);
 		
 	}
 	
