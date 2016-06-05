@@ -34,11 +34,15 @@ public class ComputerPlayer extends Player{
 	}
 
 	
+	@SuppressWarnings("unused")
 	private void randomAI() {
 		
-		choosedColor = Filler.randomColor();
+		Color color = Filler.randomColor();
 		
-		checkColor(choosedColor);
+		boolean ok = checkColor(color);
+		
+		choosedColor = ok ? color : null;
+		
 		
 	}
 	
@@ -70,10 +74,7 @@ public class ComputerPlayer extends Player{
 						
 					}
 					
-				}
-				
-				
-								
+				}								
 			}
 		}	
 		
@@ -87,16 +88,12 @@ public class ComputerPlayer extends Player{
 		
 		for(int i = 0; i < Filler.colors.length; i++){
 			
-			if(chkColor(Filler.colors[i]) && colorsOcc[i] >= maxOcc){
+			if(checkColor(Filler.colors[i]) && colorsOcc[i] >= maxOcc){
 				maxOcc = colorsOcc[i];
 				choosedColor = Filler.colors[i];
 			}
 			
 		}
-		
-		
-		
-		checkColor(choosedColor);
 		
 	}
 

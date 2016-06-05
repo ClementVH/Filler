@@ -11,11 +11,8 @@ import Player.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.data.JSONObject;
-import processing.net.Server;
 
-public class Filler {
-	
-	public static Server server;
+public class Filler{
 	
 	public static PApplet p;
 	
@@ -25,8 +22,11 @@ public class Filler {
 	public static int 			GRID_HEIGHT;
 	
 	public static EMapType 		mapType;
+	
 	public static GameState 	gameState;
+	
 	public static Game 			game;
+	
 	public static PImage 		startMenuBG;
 	public static PImage 		inGameBG;
 	public static PImage 		settingsBG;
@@ -43,7 +43,6 @@ public class Filler {
 	
 	static JSONObject settingsJSON;
 	
-	// Un tableau des couleurs utilisées dans jeu
 	public static Color[] colors;
 	
 	public Filler(PApplet parent){
@@ -52,13 +51,7 @@ public class Filler {
 		
 		p.size(800, 600);
 		
-		startMenuBG = parent.loadImage("startMenuBG.png"); // Chargement des images utilisées;
-		inGameBG = parent.loadImage("inGameBG.png");
-		settingsBG = parent.loadImage("settingsBG.png");
-		editButton = parent.loadImage("editButton.png");
-		
-		settingsJSON = p.loadJSONObject("settings.json");
-		
+		loadFiles();
 	
 		setup();
 		
@@ -107,27 +100,6 @@ public class Filler {
 		
 		}
 		
-		
-	}
-		
-	
-	
-	public static void play(){
-		
-		gameState = GameState.INGAME;
-		Game.begin();
-		
-	}
-	
-	public static void quit(){
-		
-		p.exit();
-		
-	}
-	
-	public static void settings(){
-		
-		gameState = GameState.SETTINGS;
 		
 	}
 	
@@ -210,6 +182,17 @@ public class Filler {
 		initColors(); 
 		initPositions();
 		initNames();
+		
+	}
+	
+	private void loadFiles() {
+		
+		startMenuBG = p.loadImage("startMenuBG.png"); // Chargement des images utilisées;
+		inGameBG = p.loadImage("inGameBG.png");
+		settingsBG = p.loadImage("settingsBG.png");
+		editButton = p.loadImage("editButton.png");
+		
+		settingsJSON = p.loadJSONObject("settings.json");
 		
 	}
 

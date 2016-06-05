@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import Main.Filler;
 import Main.Game;
 import Map.MapType;
-import processing.net.Client;
 
 public abstract class Player {
 	
@@ -29,8 +28,6 @@ public abstract class Player {
 		color = Game.map.get(position[0]).get(position[1]).color;
 		
 		Game.map.get(position[0]).get(position[1]).domination = nb;
-		
-		Client c = new Client(Filler.p, "127.0.0.1", 12345);
 		
 	}
 	
@@ -99,7 +96,7 @@ public abstract class Player {
 		
 		
 		
-		if(newGroup.size() == 0) return;
+		if(newGroup.size() == 0){ choosedColor = null; return;}
 		else fill(newGroup);
 		
 	}
@@ -116,21 +113,7 @@ public abstract class Player {
 		
 	}
 	
-	public void checkColor(Color color){
-		
-		boolean ok = true;
-		
-		for(int i = 0; i < Game.players.size(); i++){
-			
-			if(color == Game.players.get(i).color)
-				ok = false;			
-		}
-		
-		choosedColor = ok ? choosedColor : null;
-		
-	}
-	
-	public boolean chkColor(Color color){
+	public static boolean checkColor(Color color){
 		
 		boolean ok = true;
 		

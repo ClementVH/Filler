@@ -1,6 +1,8 @@
 package Gui;
 
 import Main.Filler;
+import Main.Game;
+import Main.GameState;
 
 public class StartMenuGui extends IGui {
 	
@@ -35,21 +37,40 @@ public class StartMenuGui extends IGui {
 		
 		if(isInRect(PlayX, PlayY, PlayWidth, PlayHeight, mouseX, mouseY)){
 			
-			Filler.play();
+			play();
 			
 		}
 		
 		if(isInRect(SettingsX, SettingsY, SettingsWidth, SettingsHeight, mouseX, mouseY)){
 			
-			Filler.settings();
+			settings();
 			
 		}
 		
 		if(isInRect(QuitX, QuitY, QuitWidth, QuitHeight, mouseX, mouseY)){
 			
-			Filler.quit();
+			quit();
 			
 		}
+		
+	}
+
+	private static void play(){
+		
+		Filler.gameState = GameState.INGAME;
+		Game.begin();
+		
+	}
+	
+	private static void quit(){
+		
+		Filler.p.exit();
+		
+	}
+	
+	private static void settings(){
+		
+		Filler.gameState = GameState.SETTINGS;
 		
 	}
 

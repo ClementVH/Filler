@@ -11,13 +11,12 @@ public class HumanPlayer extends Player{
 		
 		if(choosedColor != null){
 			
-			checkColor(choosedColor);
-			
-			color = choosedColor == null ? color : choosedColor;
+			color = choosedColor;
 			
 			fill();
 			
 			choosedColor = null;
+			
 			pass();
 			
 		}

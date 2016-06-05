@@ -7,6 +7,8 @@ import Map.MapType;
 
 public class SquareMap extends Map<MapType>{
 
+	private static final long serialVersionUID = 1L;
+
 	public SquareMap(){
 		
 		super();
@@ -50,11 +52,7 @@ public class SquareMap extends Map<MapType>{
 				square.display();
 				
 			}
-			
-			
-			
 		}
-		
 	}
 
 }

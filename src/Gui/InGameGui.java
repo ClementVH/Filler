@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 
 import Main.Filler;
 import Main.Game;
-import Main.GameState;
 import Player.Player;
 import processing.core.PConstants;
 import processing.core.PFont;
@@ -47,7 +46,7 @@ public class InGameGui extends IGui{
 		
 		Filler.p.text("C'est le tour de :", 700, 100);
 		
-		Filler.p.text("Joueur 1", 700, 150);
+		Filler.p.text(Filler.currentPlayer.name, 700, 150);
 		
 		Filler.p.strokeWeight(1);
 		
@@ -81,34 +80,34 @@ public class InGameGui extends IGui{
 	
 	public static void mousePressed(float mouseX, float mouseY){
 		
-		if(isInRect(redX, colorY, colorWidth, colorWidth, mouseX, mouseY) && checkColor(Filler.colors[0])){			
+		if(isInRect(redX, colorY, colorWidth, colorWidth, mouseX, mouseY) && Player.checkColor(Filler.colors[0])){			
 			
 			Filler.currentPlayer.choosedColor = Filler.colors[0];
 			
 		}
 		
-		if(isInRect(orangeX, colorY, colorWidth, colorWidth, mouseX, mouseY) && checkColor(Filler.colors[1])){
+		if(isInRect(orangeX, colorY, colorWidth, colorWidth, mouseX, mouseY) && Player.checkColor(Filler.colors[1])){
 			
 			Filler.currentPlayer.choosedColor = Filler.colors[1];
 			
 		}
 
-		if(isInRect(yellowX, colorY, colorWidth, colorWidth, mouseX, mouseY) && checkColor(Filler.colors[2])){
+		if(isInRect(yellowX, colorY, colorWidth, colorWidth, mouseX, mouseY) && Player.checkColor(Filler.colors[2])){
 	
 			Filler.currentPlayer.choosedColor = Filler.colors[2];	
 		}
 
-		if(isInRect(greenX, colorY, colorWidth, colorWidth, mouseX, mouseY) && checkColor(Filler.colors[3])){
+		if(isInRect(greenX, colorY, colorWidth, colorWidth, mouseX, mouseY) && Player.checkColor(Filler.colors[3])){
 	
 			Filler.currentPlayer.choosedColor = Filler.colors[3];	
 		}
 
-		if(isInRect(blueX, colorY, colorWidth, colorWidth, mouseX, mouseY) && checkColor(Filler.colors[4])){
+		if(isInRect(blueX, colorY, colorWidth, colorWidth, mouseX, mouseY) && Player.checkColor(Filler.colors[4])){
 	
 			Filler.currentPlayer.choosedColor = Filler.colors[4];	
 		}
 		
-		if(isInRect(purpleX, colorY, colorWidth, colorWidth, mouseX, mouseY) && checkColor(Filler.colors[5])){
+		if(isInRect(purpleX, colorY, colorWidth, colorWidth, mouseX, mouseY) && Player.checkColor(Filler.colors[5])){
 			
 			Filler.currentPlayer.choosedColor = Filler.colors[5];	
 		}
