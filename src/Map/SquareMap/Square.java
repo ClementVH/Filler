@@ -15,11 +15,12 @@ public class Square extends MapType{
 		neighbors[2] = new int[]{x	, y-1};
 		neighbors[3] = new int[]{x	, y+1};
 		
+		
+		
 	}
 
 	@Override
 	public void display() {
-		
 		Filler.p.rect(x, y, 1, 1);
 		
 	}

@@ -54,8 +54,8 @@ public abstract class Player {
 						y = neighborPos[1];
 						
 						if(x >= 0 && y >= 0 && x < Filler.GRID_WIDTH && y < Filler.GRID_HEIGHT){
-							if(Game.map.get(x).get(y).color == color)
-								group.add(Game.map.get(x).get(y));
+							if(Game.map.getCell(x, y).color == color)
+								group.add(Game.map.getCell(x, y));
 						}
 					}
 				}
@@ -87,8 +87,8 @@ public abstract class Player {
 				y = neighborPos[1];
 				
 				if(x >= 0 && y >= 0 && x < Filler.GRID_WIDTH && y < Filler.GRID_HEIGHT){
-					if(Game.map.get(x).get(y).color == color && Game.map.get(x).get(y).domination == 0)
-						newGroup.add(Game.map.get(x).get(y));
+					if(Game.map.getCell(x, y).color == color && Game.map.getCell(x, y).domination == 0)
+						newGroup.add(Game.map.getCell(x, y));
 				}
 			}
 			

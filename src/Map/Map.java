@@ -12,6 +12,8 @@ public abstract class Map<T> extends ArrayList<ArrayList<T>>{
 	
 	public abstract void display();
 	
-	
+	public  T getCell(int x, int y){
+		return this.get(x).get(y);
+	}
 
 }

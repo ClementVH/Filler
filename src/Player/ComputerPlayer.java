@@ -14,11 +14,22 @@ public class ComputerPlayer extends Player{
 	}
 
 	@Override
-	public void update() {
+	public void update() {		
 		
-		//randomAI();
+		switch(Filler.AI){
+			
+		case RANDOM:
+			randomAI();
+			break;
 		
-		easyAI();
+		case EASY:
+			easyAI();
+			break;
+		
+		default:
+			break;
+		
+		}
 		
 		color = choosedColor == null ? color : choosedColor;
 		
@@ -34,7 +45,6 @@ public class ComputerPlayer extends Player{
 	}
 
 	
-	@SuppressWarnings("unused")
 	private void randomAI() {
 		
 		Color color = Filler.randomColor();
@@ -46,7 +56,6 @@ public class ComputerPlayer extends Player{
 		
 	}
 	
-	@SuppressWarnings("unused")
 	private void easyAI() {
 		
 		int[] colorsOcc = new int[6];
@@ -63,10 +72,10 @@ public class ComputerPlayer extends Player{
 						
 						if(x >= 0 && y >= 0 && x < Filler.GRID_WIDTH && y < Filler.GRID_HEIGHT){
 							
-							MapType neighbor = Game.map.get(x).get(y);
+							MapType neighbor = Game.map.getCell(x, y);
 							
 							if(!neighbor.visited){
-								colorsOcc = updateColors(colorsOcc, neighbor.color);
+								colorsOcc = updateColorsOcc(colorsOcc, neighbor.color);
 								neighbor.visited = true;
 							}
 							
@@ -80,11 +89,9 @@ public class ComputerPlayer extends Player{
 		
 		resetVisited();
 		
-		Player bestEnnemy = chooseBestEnnemy();
+		//Player bestEnnemy = chooseBestEnnemy();
 		
 		int maxOcc = 0;
-		
-		ArrayList<Integer> indexesOfMaxOcc = new ArrayList<Integer>();
 		
 		for(int i = 0; i < Filler.colors.length; i++){
 			
@@ -97,7 +104,7 @@ public class ComputerPlayer extends Player{
 		
 	}
 
-	private int[] updateColors(int[] colorsOcc, Color color) {
+	private int[] updateColorsOcc(int[] colorsOcc, Color color) {
 		
 		for(int i = 0; i < Filler.colors.length; i++){
 			

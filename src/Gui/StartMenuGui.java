@@ -4,7 +4,7 @@ import Main.Filler;
 import Main.Game;
 import Main.GameState;
 
-public class StartMenuGui extends IGui {
+public class StartMenuGui extends Gui {
 	
 	static int PlayX = 492;
 	static int PlayY = 212;

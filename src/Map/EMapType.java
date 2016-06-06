@@ -2,6 +2,6 @@ package Map;
 
 public enum EMapType {
 	
-	SQUARE
+	SQUARE, TRIANGLE
 
 }

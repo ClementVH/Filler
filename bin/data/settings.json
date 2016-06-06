@@ -1,10 +1,10 @@
 {
-	"gridSize" : 70,
+	"gridSize" : 9,
 
-	"nbHumanPlayer" : 1,
-	"nbAIPlayer" : 1,
+	"nbHumanPlayer" : 0,
+	"nbAIPlayer" : 2,
 
-	"AI" : "moderate",
+	"AI" : "EASY",
 
 	"mapType" : "SQUARE",
 

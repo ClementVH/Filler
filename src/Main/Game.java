@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Map.Map;
 import Map.MapType;
 import Map.SquareMap.SquareMap;
+import Map.TriangleMap.TriangleMap;
 import Player.ComputerPlayer;
 import Player.HumanPlayer;
 import Player.Player;
@@ -21,7 +22,16 @@ public class Game {
 		
 		switch(Filler.mapType){
 		
-			case SQUARE: map = new SquareMap();
+		case SQUARE: map = new SquareMap();
+					Filler.initPositions();
+					break;
+					
+		case TRIANGLE: map = new TriangleMap();
+					Filler.initPositions();
+			break;
+		
+		default:
+			break;
 			
 		}
 		
@@ -67,6 +77,28 @@ public class Game {
 		map.display();
 				
 		
+	}
+
+
+
+	public static boolean isFinished() {
+		
+		int somme = 0; 
+		Player best = players.get(0);
+		for(Player p : players){
+			if(p.score > best.score) best = p;
+			somme += p.score;
+			
+		}
+		
+		if(somme == Filler.GRID_WIDTH * Filler.GRID_HEIGHT){
+			
+			Filler.winner = best;
+			
+			return true;
+		}
+		
+		return false;
 	}
 
 }

@@ -148,6 +148,20 @@
 >
 > Fonction ultrasimple pour le type de cellule Square, on dessine un carré aux coordonnées x et y.
 
+1.  TriangleMap
+
+<!-- -->
+
+1.  TriangleMap
+
+> Le principe est exactement le même que pour la classe SquareMap
+
+1.  Triangle
+
+> Méthode display () :
+>
+> Un petit peu plus complexe que pour dessiner un carré, j’utilise ici la fonction beginShape () qui me permet ensuite de spécifier des points qui seront les sommets des triangles.
+
 1.  Player
 
 <!-- -->
@@ -158,9 +172,9 @@
 >
 > Attributs :
 
--   color color : couleur actuelle du joueur.
+-   Color color : couleur actuelle du joueur.
 
--   string name : le nom du joueur.
+-   String name : le nom du joueur.
 
 -   int nb : son numéro, utilisé pour la domination des cellules.
 
@@ -216,16 +230,44 @@
 >
 > Par contre, dès que le joueur choisit une couleur (on verra le principe de sélection de la couleur un peu plus tard) alors on change sa couleur avec la couleur choisie, ensuite le processus de capture est lancé avec la méthode fill () ensuite on réinitialise la variable choosedColor à null et enfin on fait passer le tour du joueur avec la méthode pass ().
 
-1.  ComputerPLayer
+1.  ComputerPlayer
+
+> C’est la classe qui décrit un joueur ordinateur, qui va jouer avec une intelligence artificielle.
+>
+> Méthode update ()
+>
+> Un peu différente de celle du joueur humain, dans cette classe la méthode update () exécute une intelligence artificielle qui va choisir une couleur à capturer. Ensuite le déroulement est le même que pour la méthode du joueur humain.
+>
+> Méthode easyAI ()
+>
+> C’est une intelligence artificielle assez simple. La fonction met dans un tableau le nombre de fois que chaque couleur apparait dans les voisins directe du terrain que le joueur a déjà capturé. Ensuite elle choisit la couleur qui apparait le plus de fois.
+
+1.  Gui
 
 <!-- -->
 
 1.  Gui
 
-2.  Data
+> C’est la classe parente à toutes les interfaces utilisateurs. J’y ai mis une méthode qui est utilisée dans tous les GUI.
 
-<!-- -->
+1.  StartMenuGui
 
-1.  Choix et description des algos utilisés
+> Rien de spécial pour cette classe, elle permet de lancer le jeu, en lançant la méthode Game.begin (), d’accéder au menu d’options ou encore de quitter l’application.
 
-2.  Conclusion
+1.  SettingsGui
+
+> Ce GUI permet de changer quelques options pour la partie à venir, telles que la taille du plateau ou encore les noms des joueurs.
+>
+> Dans cette classe on gère beaucoup d’action à la souris avec les coordonnées des boutons à l’écran.
+
+1.  VictoryGui
+
+> Ecore rien d’extraordinaire pour cette classe, c’est juste pour gérer la victoire d’un joueur, et rediriger vers le menu ou proposer de rejouer.
+
+1.  Data
+
+> Le package Data est utilisé par la librairie Processing, c’est ici qu’on doit mettre les fichiers de ressources dont on a besoin dans l’application, j’y aie donc mis les images de fonds, le fichier d’options et même une police d’écriture.
+
+1.  Conclusion
+
+> Pour finir je pense que mon architecture est plutôt bien construite et me permet de moduler assez facilement l’application. Le fait d’avoir divisé le code en beau coup de classes rend le code épuré et on peut s’y retrouver facilement. Et sinon la partie graphique a été plutôt sympathique à programmer avec la librairie Processing. J’ai essayé de soigner le visuel de l’application.

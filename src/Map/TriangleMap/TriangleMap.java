@@ -1,18 +1,21 @@
-package Map.SquareMap;
+package Map.TriangleMap;
 
 import java.util.ArrayList;
+
 import Main.Filler;
 import Map.Map;
 import Map.MapType;
 
-public class SquareMap extends Map<MapType>{
+public class TriangleMap extends Map<MapType>{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-
-	public SquareMap(){
+	
+	public TriangleMap(){
 		
 		super();
-		
 		
 		for(int i = 0; i < Filler.GRID_WIDTH; i++){
 			
@@ -20,7 +23,7 @@ public class SquareMap extends Map<MapType>{
 			
 			for(int j = 0; j < Filler.GRID_HEIGHT; j++){
 				
-				Square s = new Square(i, j);
+				Triangle s = new Triangle(i, j);
 				
 				column.add(s);
 				
@@ -32,7 +35,7 @@ public class SquareMap extends Map<MapType>{
 		
 		
 	}
-
+	
 	@Override
 	public void display() {
 		
@@ -47,10 +50,10 @@ public class SquareMap extends Map<MapType>{
 			
 			for(int j = 0; j < column.size(); j++){
 				
-				Square square = (Square) column.get(j);
+				Triangle Triangle = (Triangle) column.get(j);
 				
-				Filler.p.fill(square.color.getRGB());
-				square.display();
+				Filler.p.fill(Triangle.color.getRGB());
+				Triangle.display();
 				
 			}
 		}

@@ -6,9 +6,11 @@ import java.util.Random;
 import Gui.InGameGui;
 import Gui.SettingsGui;
 import Gui.StartMenuGui;
+import Gui.VictoryGui;
 import Map.EMapType;
 import Player.Player;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 import processing.data.JSONObject;
 
@@ -41,15 +43,23 @@ public class Filler{
 	
 	public static int[][] playerPositions;
 	
+	public static EAI AI;
+	
 	static JSONObject settingsJSON;
 	
 	public static Color[] colors;
+	
+	public static PFont font;
+
+	public static Player winner;
 	
 	public Filler(PApplet parent){
 		
 		p = parent;
 		
 		p.size(800, 600);
+		
+		font = Filler.p.loadFont("KristenITC-Regular-16.vlw");
 		
 		loadFiles();
 	
@@ -68,6 +78,9 @@ public class Filler{
 							break;
 			case SETTINGS:	SettingsGui.update();  
 							break;
+			
+			case VICTORY:	VictoryGui.update();  
+							break;
 		
 		}
 		
@@ -83,6 +96,8 @@ public class Filler{
 							break;
 			case SETTINGS:	SettingsGui.moussePressed(mouseX, mouseY);
 							break;
+			case VICTORY:	VictoryGui.mousePressed(mouseX, mouseY); 
+							break;
 		}
 	
 	}
@@ -97,6 +112,11 @@ public class Filler{
 			case INGAME : 	InGameGui.keyPressed();
 							break;
 			case SETTINGS:	break;
+			
+			case VICTORY:
+							break;
+		default:
+			break;
 		
 		}
 		
@@ -122,14 +142,48 @@ public class Filler{
 		
 	}
 	
-	private static void initPositions() {
-
+	public static void initPositions() {
+		
 		playerPositions = new int[4][2];
 		
-		playerPositions[0] = new int[]{0,0};
-		playerPositions[1] = new int[]{GRID_WIDTH - 1,0};
-		playerPositions[2] = new int[]{0,GRID_HEIGHT - 1};
-		playerPositions[3] = new int[]{GRID_WIDTH - 1,GRID_HEIGHT - 1};
+		switch (mapType) {
+		
+		case SQUARE:	playerPositions[0] = new int[]{0,0};
+						playerPositions[1] = new int[]{GRID_WIDTH - 1,0};
+						playerPositions[2] = new int[]{0,GRID_HEIGHT - 1};
+						playerPositions[3] = new int[]{GRID_WIDTH - 1,GRID_HEIGHT - 1};
+						break;
+		
+		case TRIANGLE:	
+			
+						if(GRID_WIDTH%2 == 0){
+							
+							playerPositions[0] = new int[]{0,GRID_HEIGHT/2};
+							playerPositions[1] = new int[]{GRID_WIDTH - 1,GRID_HEIGHT/2};
+							playerPositions[2] = new int[]{GRID_WIDTH/2, 0};
+							playerPositions[3] = new int[]{GRID_WIDTH/2,GRID_HEIGHT - 1};
+							
+						}
+						else if(GRID_WIDTH%2 != 0){
+							
+							playerPositions[0] = new int[]{0,GRID_HEIGHT/2};
+							playerPositions[1] = new int[]{GRID_WIDTH - 1,GRID_HEIGHT/2};
+							playerPositions[2] = new int[]{GRID_WIDTH/2 + 1, 0};
+							playerPositions[3] = new int[]{GRID_WIDTH/2 + 1,GRID_HEIGHT - 1};
+							
+						}
+						break;
+		
+		default:
+						break;
+		
+		
+		}
+		
+		
+		
+		
+		
 		
 		
 	}
@@ -151,7 +205,11 @@ public class Filler{
 		case "SQUARE":
 			mapType = EMapType.SQUARE;
 			break;
-
+		
+		case "TRIANGLE":
+			mapType = EMapType.TRIANGLE;
+			break;
+			
 		default:
 			mapType = EMapType.SQUARE;
 			break;
@@ -169,16 +227,48 @@ public class Filler{
 		
 		gameState = GameState.MENU;
 		
+		switch (settingsJSON.getString("AI")) {
+		
+		case "RANDOM":
+			AI = EAI.RANDOM;
+			break;
+		
+		case "EASY":
+			AI = EAI.EASY;
+			break;
+		default:
+			AI = EAI.EASY;
+			break;
+		}
+		
 		nbHumanPlayer = settingsJSON.getInt("nbHumanPlayer");
 		nbAIPlayer = settingsJSON.getInt("nbAIPlayer");
 		
 		
-		GRID_WIDTH 	= settingsJSON.getInt("gridSize");
-		GRID_HEIGHT = settingsJSON.getInt("gridSize");
-		
-		scale = 600f/GRID_WIDTH;
 		
 		initMapType();
+		
+		if(settingsJSON.getInt("gridSize")%2 != 0)
+			settingsJSON.setInt("gridSize", settingsJSON.getInt("gridSize") + 1);
+		
+		switch (mapType) {
+		
+		case SQUARE:	GRID_WIDTH 	= settingsJSON.getInt("gridSize");
+						GRID_HEIGHT = settingsJSON.getInt("gridSize");
+						break;
+		
+		case TRIANGLE:	GRID_WIDTH 	= settingsJSON.getInt("gridSize") / 2;
+						GRID_HEIGHT = settingsJSON.getInt("gridSize");
+						break;
+		
+		default:
+						break;
+		
+		
+		}
+		
+		
+		updateScale();
 		initColors(); 
 		initPositions();
 		initNames();
@@ -193,6 +283,32 @@ public class Filler{
 		editButton = p.loadImage("editButton.png");
 		
 		settingsJSON = p.loadJSONObject("settings.json");
+		
+	}
+
+	public static void replay() {
+		
+		gameState = GameState.INGAME;
+		
+		Game.begin();
+		
+	}
+	
+	public static void updateScale(){
+		
+		switch (mapType) {
+		
+		case SQUARE:	scale = 600f/GRID_WIDTH;
+						break;
+		
+		case TRIANGLE:	scale = 600f/GRID_WIDTH/2 * 0.85f;
+						break;
+		
+		default:
+						break;
+		
+		
+		}
 		
 	}
 

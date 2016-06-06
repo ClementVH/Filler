@@ -6,11 +6,11 @@ import javax.swing.JOptionPane;
 
 import Main.Filler;
 import Main.Game;
+import Main.GameState;
 import Player.Player;
 import processing.core.PConstants;
-import processing.core.PFont;
 
-public class InGameGui extends IGui{
+public class InGameGui extends Gui{
 	
 	static int colorY = 300;
 	static int redX = 610;
@@ -33,9 +33,7 @@ public class InGameGui extends IGui{
 		
 		Filler.p.background(Filler.inGameBG);
 		
-		PFont font = Filler.p.loadFont("KristenITC-Regular-16.vlw");
-
-		Filler.p.textFont(font);
+		Filler.p.textFont(Filler.font);
 		Filler.p.textSize(18);
 		
 		Filler.p.stroke(255);
@@ -74,6 +72,12 @@ public class InGameGui extends IGui{
 		}
 		for(int i = 0; i < Filler.nbAIPlayer; i++){
 			Filler.p.text(Game.players.get(i + Filler.nbHumanPlayer).name + " : " + Game.players.get(i + Filler.nbHumanPlayer).score, 610, 475 + (i+Filler.nbHumanPlayer) * 35);
+		}
+		
+		if(Game.isFinished()){
+			
+			Filler.gameState = GameState.VICTORY;	
+			
 		}
 		
 	}
@@ -131,25 +135,12 @@ public class InGameGui extends IGui{
 		
 	}
 	
-	public static boolean alreadyChoosed(Color color){
-		
-		for(Player p : Game.players){
-			
-			Color c = p.color;
-			
-			if(color == c) return true;
-			
-		}
-		
-		return false;
-	}
-	
 	public static void colorRect(Color color, float x, float y, float w, float h){
 		
 		Filler.p.fill(color.getRGB());
 		Filler.p.rect(x , y, w, h);
 		
-		if(alreadyChoosed(color)){
+		if(!Player.checkColor(color)){
 			Filler.p.fill(Color.LIGHT_GRAY.getRGB(), 175);
 			Filler.p.rect(x     , y, w, h);
 		}
