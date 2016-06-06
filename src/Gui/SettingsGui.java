@@ -164,6 +164,13 @@ public class SettingsGui extends Gui{
 			
 			Filler.mapType = (i == 0)? EMapType.values()[ EMapType.values().length-1] : EMapType.values()[i-1];
 			
+			Filler.updateScale();
+			
+			if(Filler.mapType == EMapType.TRIANGLE)
+				Filler.GRID_WIDTH = Filler.GRID_WIDTH/2;
+			if(Filler.mapType == EMapType.SQUARE)
+				Filler.GRID_WIDTH = Filler.GRID_WIDTH*2;
+			
 		}
 		
 		if (isInRect(nextMapTypeX, nextMapTypeY, nextMapTypeWidth, nextMapTypeHeight, mouseX, mouseY)) {
@@ -172,6 +179,13 @@ public class SettingsGui extends Gui{
 			
 			Filler.mapType = (i == EMapType.values().length-1)? EMapType.values()[0] : EMapType.values()[i+1];
 			
+			Filler.updateScale();
+			
+			if(Filler.mapType == EMapType.TRIANGLE)
+				Filler.GRID_WIDTH = Filler.GRID_WIDTH/2;
+			if(Filler.mapType == EMapType.SQUARE)
+				Filler.GRID_WIDTH = Filler.GRID_WIDTH*2;
+			
 		}
 		
 		if (isInRect(editSizeX, editSizeY, editSizeWidth, editSizeHeight, mouseX, mouseY)) {
@@ -179,12 +193,19 @@ public class SettingsGui extends Gui{
 			String res = JOptionPane.showInputDialog("Grid size ?");
 			
 			try {
-				Filler.GRID_HEIGHT = Integer.parseInt(res);
-				Filler.GRID_WIDTH = Filler.GRID_HEIGHT/2;
-				Filler.updateScale();
+				if(Filler.mapType == EMapType.TRIANGLE){
+					Filler.GRID_HEIGHT = Integer.parseInt(res);
+					if(Filler.GRID_HEIGHT%2 != 0) Filler.GRID_HEIGHT+= 1;
+					Filler.GRID_WIDTH = Filler.GRID_HEIGHT/2;
+					Filler.scale = 600f/Filler.GRID_WIDTH/2*0.85f;
+				}
+				else{
+					Filler.GRID_HEIGHT = Integer.parseInt(res);
+					Filler.GRID_WIDTH = Filler.GRID_HEIGHT;
+					Filler.scale = 600f/Filler.GRID_WIDTH;
+				}
+				
 			} catch (Exception e) {}
-			
-			
 			
 			
 			

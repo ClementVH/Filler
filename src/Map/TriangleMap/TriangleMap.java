@@ -38,7 +38,6 @@ public class TriangleMap extends Map<MapType>{
 	
 	@Override
 	public void display() {
-		
 		Filler.p.scale(Filler.scale);
 		
 		Filler.p.stroke(48, 32, 19);

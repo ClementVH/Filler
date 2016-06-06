@@ -268,6 +268,7 @@ public class Filler{
 		}
 		
 		
+		
 		updateScale();
 		initColors(); 
 		initPositions();
@@ -301,7 +302,7 @@ public class Filler{
 		case SQUARE:	scale = 600f/GRID_WIDTH;
 						break;
 		
-		case TRIANGLE:	scale = 600f/GRID_WIDTH/2 * 0.85f;
+		case TRIANGLE:	scale = 600f/GRID_WIDTH * 0.85f;
 						break;
 		
 		default:
